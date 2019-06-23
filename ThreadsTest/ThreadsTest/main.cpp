@@ -49,11 +49,11 @@ int ack(int a, int b)
 	}
 	else if (a > 0 && b == 0)
 	{
-		ack(a - 1, b);
+		return ack(a - 1, 1);
 	}
 	else if ( a > 0 && b > 0)
 	{
-		ack(a - 1, ack(a, b - 1));
+		return ack(a - 1, ack(a, b - 1));
 	}
 	else
 	{
@@ -64,21 +64,15 @@ int ack(int a, int b)
 void ackWrapper(int totalX, int totalY)
 {
 	int i = 0, j = 0;
-	while (i < totalX || j < totalY)
+	while (i <= totalX && j <= totalY)
 	{
 		int n = ack(i, j);
 		cout << "Ack(" << i << ", " << j << ") = " << n << endl;
-		if (j >= totalY)
+		++j;
+		if (j % totalY == 0)
 		{
-			if (i < totalX)
-			{
-				++i;
-			}
-			j = 0;
-		}
-		else
-		{
-			++j;
+			++i;
+			j = j% totalY;
 		}
 	}
 }
