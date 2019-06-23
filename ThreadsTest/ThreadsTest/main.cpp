@@ -41,11 +41,55 @@ void fibWrapper(int totalRuns)
 
 //thread 2
 //runs a recursive ackermann function and prints outputs
+int ack(int a, int b)
+{
+	if(a == 0)
+	{
+		return b + 1;
+	}
+	else if (a > 0 && b == 0)
+	{
+		ack(a - 1, b);
+	}
+	else if ( a > 0 && b > 0)
+	{
+		ack(a - 1, ack(a, b - 1));
+	}
+	else
+	{
+		return -1;
+	}
+}
+
+void ackWrapper(int totalX, int totalY)
+{
+	int i = 0, j = 0;
+	while (i < totalX || j < totalY)
+	{
+		int n = ack(i, j);
+		cout << "Ack(" << i << ", " << j << ") = " << n << endl;
+		if (j >= totalY)
+		{
+			if (i < totalX)
+			{
+				++i;
+			}
+			j = 0;
+		}
+		else
+		{
+			++j;
+		}
+	}
+}
 
 int main()
 {
-	int goal = 10;
-	fibWrapper(goal);
+	int fibGoal = 10;
+	fibWrapper(fibGoal);
+
+	int ackGoalX = 3, ackGoalY = 8;
+	ackWrapper(ackGoalX, ackGoalY);
 
 	pause();
 
