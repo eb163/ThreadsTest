@@ -28,13 +28,18 @@ int fib(int start)
 		}
 }
 
+void fibPrint(int i, int n)
+{
+	cout << "Fib(" << i << ") = " << n << endl;
+}
+
 void fibWrapper(int totalRuns)
 {
 	int i = 0;
 	while(i < totalRuns)
 	{
 		int n = fib(i);
-		cout << "Fib(" << i << ") = " << n << endl;
+		fibPrint(i, n);
 		++i;
 	}
 }
@@ -61,13 +66,18 @@ int ack(int a, int b)
 	}
 }
 
+void ackPrint(int i, int j, int n)
+{
+	cout << "Ack(" << i << ", " << j << ") = " << n << endl;
+}
+
 void ackWrapper(int totalX, int totalY)
 {
 	int i = 0, j = 0;
 	while (i <= totalX && j <= totalY)
 	{
 		int n = ack(i, j);
-		cout << "Ack(" << i << ", " << j << ") = " << n << endl;
+		ackPrint(i, j, n);
 		++j;
 		if (j % totalY == 0)
 		{
@@ -79,11 +89,17 @@ void ackWrapper(int totalX, int totalY)
 
 int main()
 {
-	int fibGoal = 10;
-	fibWrapper(fibGoal);
+	int fibGoal = 25;
+//	fibWrapper(fibGoal);
 
-	int ackGoalX = 3, ackGoalY = 8;
-	ackWrapper(ackGoalX, ackGoalY);
+	int ackGoalX = 3, ackGoalY = 10;
+//	ackWrapper(ackGoalX, ackGoalY);
+
+	std::thread fibThread(fibWrapper, fibGoal);
+	std::thread ackThread(ackWrapper, ackGoalX, ackGoalY);
+
+	ackThread.join();
+	fibThread.join();
 
 	pause();
 
