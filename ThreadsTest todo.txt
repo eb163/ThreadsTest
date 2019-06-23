@@ -1,0 +1,7 @@
+TODO:
+----------------------------------
+1. Modify program structure
+	-threads should perform "atomic" actions
+		-currently threads handle computation AND printing results to screen
+		-this results in the display being messed up when a thread pauses in the middle of printing and the other thread strts printing instead
+		-have the main thread handle printing results, and computation is handled only by sub threads.
