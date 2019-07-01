@@ -40,7 +40,7 @@ void printAckResults(vector<int> results, int endX, int endY)
 }
 
 //thread 1
-//runs a recursive fibonacci function and prints outputs
+//runs a recursive fibonacci function
 int fib(int start)
 {
 		if(start == 0 || start == 1)
@@ -65,7 +65,7 @@ void fibWrapper(int totalRuns, vector<int>& results)
 }
 
 //thread 2
-//runs a recursive ackermann function and prints outputs
+//runs a recursive ackermann function
 int ack(int a, int b)
 {
 	if(a == 0)
@@ -105,11 +105,9 @@ void ackWrapper(int totalX, int totalY, vector<int>& results)
 int main()
 {
 	int fibGoal = 25;
-//	fibWrapper(fibGoal);
 	vector<int> fibResults;
 
 	int ackGoalX = 3, ackGoalY = 10;
-//	ackWrapper(ackGoalX, ackGoalY);
 	vector<int> ackResults;
 
 	cout << "Starting threads..." << endl;
